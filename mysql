@@ -1,0 +1,82 @@
+Mysql学习
+
+
+1.mysql -u root -p        今入数据库服务器
+2.Show databases;       查看数据库中表
+3.Create database test；  创建表
+4.Use test；  使用进入表
+5.Show tables； 查看表内容
+6.CREATE TABLE pet(name VARCHAR(20),        创建表格
+Owner VARCHAR(20),
+Species VARCHAR(20),
+Sex CHAR(1),
+Birth DATE,
+Death DATE);
+
+
+
+7.describe pet; 查看整个表数据结构
+8.select * from pet; 查看表中记录
+9.INSERT INTO pet VALUES ('Puffball','Diane','hamster','f','1993-03-30',NULL); 插入表格数据
+INSERT INTO pet VALUES ('旺财','我','狗','公','1990-04-30',NULL);  注意utf-8模式中午
+10.delete from pet where name=’Puffball’; 删除数据
+11.update pet set name='rrfge' where owner='www'; 修改其中某项数据
+
+总结
+增加insert   删除delect  update 修改 select 查询
+
+
+
+
+
+
+
+
+
+12.主键约束key
+create table user(id int primary key,name varchar(20));   约束id不能重复
+
+create table user2(
+id int,
+name varchar(20),
+Password varchar(20),
+Primary key(id,name)
+);
+
+insert into user2 values(1,'lisi','123');
+insert into user2 values(1,'shangsan','123'); 主键内不可能有NULL空
+insert into user2 values(2,'shangsan','123'); 联合主键，只要主键值加起来不重复就可以。
+
+13.自增约束
+create table user3(
+    -> id int primary key auto_increment,
+    -> name varchar(20)
+    -> );
+insert into user3 (name) values('shangsan'); 多次，实现数据自动增长排序
+
+
+Alter table user4 add primary key(id); 修改表结构，添加主键
+Alter table user4 drop primary key(id); 修改表结构，删除主键
+Alter table user4 modify id int primary key; 使用modify修改字段，添加约束
+
+14.唯一约束unique 字段不能重复
+mysql> create table usr5(
+    -> id int,
+    -> name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table usr6(
+    -> id int,
+    -> name varchar(20) unique
+    -> );
+Query OK, 0 rows affected (0.60 sec)
+
+
+Alter table user7 drop index name;   删除唯一约束
+
+总结  1.建表时候添加约束
+2.可以使用alter。。。Add。。
+3.Alter。。。Modif。。    添加
+4.删除 alter。。。 drop。。
+
